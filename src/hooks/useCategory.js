@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useCategories = () => {
+const useCategorys = () => {
     const [categories, setCategories] = useState([]);
     const [categorySelected, setCategorySelected] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    // Fetch all Categories
-    const getAllCategories = async () => {
+    // Fetch all Categorys
+    const getAllCategorys = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.get("http://localhost:4000/Categories");
+            const response = await axios.get("http://localhost:4000/categories");
             setCategories(response.data.payload);
         } catch (err) {
-            setError(err.response?.data?.message || "Error fetching categories");
-            console.error("Error fetching categories", err);
+            setError(err.response?.data?.message || 'Error fetching Categorys');
+            console.error("Error fetching Categorys", err);
         } finally {
             setIsLoading(false);
         }
@@ -25,11 +25,11 @@ const useCategories = () => {
     const getCategoryById = async (id) => {
         try {
             setIsLoading(true);
-            const response = await axios.get(`http://localhost:4000/Categories/${id}`);
+            const response = await axios.get(`http://localhost:4000/categories/${id}`);
             setCategorySelected(response.data.payload);
         } catch (err) {
-            setError(err.response?.data?.message || `Error fetching category with id: ${id}`);
-            console.error("Error fetching category by ID", err);
+            setError(err.response?.data?.message || `Error fetching Category with id: ${id}`);
+            console.error("Error fetching Category by ID", err);
         } finally {
             setIsLoading(false);
         }
@@ -39,30 +39,37 @@ const useCategories = () => {
     const createCategory = async (categoryData) => {
         try {
             setIsLoading(true);
-            const response = await axios.post("http://localhost:4000/Categories", categoryData);
-            setCategories((prevCategories) => [...prevCategories, response.data.payload]);
-            await getAllCategories(); // Met à jour la liste après la création
+            const response = await axios.post("http://localhost:4000/categories", categoryData); 
+            setCategories((prevCategorys) => {
+                if (Array.isArray(prevCategorys)) {
+                    return [...prevCategorys , response.data.payload];
+                } else {
+                    return [response.data.payload]
+                }
+            }
+            );
+            getAllCategorys()
         } catch (err) {
-            setError(err.response?.data?.message || "Error creating category");
-            console.error("Error creating category", err);
+            
+            setError(err.response?.data?.message || 'Error creating Category');
+            console.error("Error creating Category", err);
         } finally {
             setIsLoading(false);
         }
     };
+    
 
     // Update a Category
     const updateCategory = async (id, updatedData) => {
         try {
             setIsLoading(true);
-            const response = await axios.put(`http://localhost:4000/Categories/${id}`, updatedData);
-            setCategories((prevCategories) =>
-                prevCategories.map((category) =>
-                    category._id === id ? response.data.payload : category
-                )
+            const response = await axios.put(`http://localhost:4000/categories/${id}`, updatedData);
+            setCategories(prevCategorys =>
+                prevCategorys.map(category => category._id === id ? response.data.payload : category)
             );
         } catch (err) {
-            setError(err.response?.data?.message || `Error updating category with id: ${id}`);
-            console.error("Error updating category", err);
+            setError(err.response?.data?.message || `Error updating Category with id: ${id}`);
+            console.error("Error updating Category", err);
         } finally {
             setIsLoading(false);
         }
@@ -72,36 +79,33 @@ const useCategories = () => {
     const deleteCategory = async (id) => {
         try {
             setIsLoading(true);
-            await axios.delete(`http://localhost:4000/Categories/${id}`);
-            setCategories((prevCategories) =>
-                prevCategories.filter((category) => category._id !== id)
-            );
+            await axios.delete(`http://localhost:4000/categories/${id}`);
+            setCategories(prevCategorys => prevCategorys.filter(category => category._id !== id));
         } catch (err) {
-            setError(err.response?.data?.message || `Error deleting category with id: ${id}`);
-            console.error("Error deleting category", err);
+            setError(err.response?.data?.message || `Error deleting Category with id: ${id}`);
+            console.error("Error deleting Category", err);
         } finally {
             setIsLoading(false);
         }
     };
 
     useEffect(() => {
-        getAllCategories();
+        getAllCategorys();
     }, []);
 
     return {
-        categories,
+        categories, 
         categorySelected,
         setCategorySelected,
         isLoading,
         error,
         setError,
-        getAllCategories,
+        getAllCategorys,
         getCategoryById,
         createCategory,
         updateCategory,
-        deleteCategory,
+        deleteCategory
     };
 };
 
-export default useCategories;
-
+export default useCategorys;
