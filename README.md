@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+## GMC-PROJECT-FRONTEND
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## PROJECT Overview
 
-## Available Scripts
+This project is the frontend part of an e-commerce application built with the MERN stack (MongoDB, Express, React, Node.js). This part of the project manages the user interface and interaction with the backend API.
 
-In the project directory, you can run:
+## Installation and Setup
 
-### `npm start`
+- **Install dependencies**: `npm install`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Set up environment variables**:
+   - Create a file named `.env` in the project’s root folder.
+   - Copy everything from the `.env.example` file into your new .env file.
+   - Update the values if needed, like adding your own database URL.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Structure
 
-### `npm test`
+The project is organized as follows:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 📦node_modules
+- 📦public
+- 📦src
+  - 📂 assets
+    - 📂 icons
+    - 📂 images
+  - 📂redux
+    - 📦examples
+      - 📜exampleSlice.js
+      - 📜exampleService.js
+    - 📜store.js
+  - 📂pages
+   - 📂 customer
+    - 📂 example
+      - 📜Example.css
+      - 📜Example.jsx
+   - 📂 admin
+    - 📂 example
+      - 📜Example.css
+      - 📜Example.jsx
+  - 📂components
+    - 📂privateRoute
+      - 📜Private.css
+    - 📂footer
+      - 📜footer.css
+      - 📜footer.jsx
+  - 📂middlewares
+  - 📂 apis
+      - 📜example.api.js
+  - 📂 hooks
+      - 📜useExample.js
+  - 📜 App.css
+  - 📜 App.js
+  - 📜 index.js
+📜.env
+📜package-lock.json
+📜package.json
+📜README.md
 
-### `npm run build`
+## Development Tools
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [JavaScript](https://www.javascript.com/)
+  - Main language for both frontend and backend.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [React](https://react.dev/)
+  - A JavaScript library for building user interfaces.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [ReactRouter](https://reactrouter.com/en/main)
+  - Navigation management for the application.
 
-### `npm run eject`
+- [axios](https://axios-http.com/)
+  -  HTTP client for making API requests.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- [ReduxToolkit](https://redux-toolkit.js.org/)
+  - efficient Redux development.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [Prettier](https://prettier.io/)
+  - Code formatting tool to keep style consistent.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Coding Guidelines
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  # Commenting Code
 
-## Learn More
+- Language: Write comments in `English`.
+- Format: Leave a space after `//`, `/*` or `*/`.
+  - Good: `/* my comment */`
+  - Bad: `/*my comment*/`
+- Explain the purpose and functionality of the code.
+- Use comments for complex or non-obvious code.
+- Comment workarounds or temporary solutions.
+- Use the [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) extension for readability.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Naming Components and Files
 
-### Code Splitting
+- Components: Use PascalCase for component names (capitalize the first letter of each word). 
+- The file name should describe the purpose of the file.
+- For example`productCard.jsx`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Hook Rules
 
-### Analyzing the Bundle Size
+- Custom Hooks: Name your hooks with the use prefix.
+- For example : `useFetch.js`...
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Variable/Constant Naming Conventions
 
-### Making a Progressive Web App
+- The naming convention for variables and constants should be **lowerCamelCase**.
+- The variable name should describe the value stored in the variable/constant.
+- For example, if the variable stores the username, it should be named `userName`.
+- We should avoid unclear variable names, like `let x`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Git Commit Rules
 
-### Advanced Configuration
+- **Commit Messages**: Commit messages should start with a capital letter and should end with a period. The message should be concise but descriptive enough to understand the changes made. For example, "Add example controllers."
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+## Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The project includes the following npm scripts:
+- `start`: Starts the application in development mode
